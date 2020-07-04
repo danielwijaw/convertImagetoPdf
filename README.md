@@ -1,6 +1,4 @@
 # convertImagetoPdf
-<br/>
-<br/>
 To Do List
 <br/>
 1. do command <pre>npm install</pre>
