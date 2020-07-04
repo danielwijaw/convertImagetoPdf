@@ -45,7 +45,8 @@ module.exports = {
                     progress.eta
                     )
                 })
-                .on('complete', function(){
+                .on('end', function(){
+                    console.log('Complete');
                     fs.unlink('public/videopath/'+videoHere.md5, function() {
                         res.redirect(301, 'videopath/'+videoHere.md5+'.mp4');   
                     });

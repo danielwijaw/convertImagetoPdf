@@ -4,10 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var fileupload = require("express-fileupload");
 var logger = require('morgan');
+var serveIndex = require('serve-index');
+var app = express();
 
 var indexRouter = require('./routes/index');
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -17,8 +17,11 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileupload());
+
+app.use('/pdf', serveIndex('public/pdf', {'icons': true}))
+app.use('/videopath', serveIndex('public/videopath', {'icons': true}))
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
